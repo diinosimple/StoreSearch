@@ -25,6 +25,7 @@
 		7C9E5AC01A29B9A4008563E9 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9E5ABF1A29B9A4008563E9 /* SearchResultCell.swift */; };
 		7C9E5AC21A29C3F0008563E9 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C9E5AC11A29C3EF008563E9 /* NothingFoundCell.xib */; };
 		7CFE1FA01A460D9B003F2EDF /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFE1F9F1A460D9B003F2EDF /* LandscapeViewController.swift */; };
+		BCCCC4571A4D3FA200356891 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCC4561A4D3FA200356891 /* Search.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		7C9E5ABF1A29B9A4008563E9 /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultCell.swift; path = ../SearchResultCell.swift; sourceTree = "<group>"; };
 		7C9E5AC11A29C3EF008563E9 /* NothingFoundCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		7CFE1F9F1A460D9B003F2EDF /* LandscapeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LandscapeViewController.swift; path = ../LandscapeViewController.swift; sourceTree = "<group>"; };
+		BCCCC4561A4D3FA200356891 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				7C9E5ABF1A29B9A4008563E9 /* SearchResultCell.swift */,
 				7C3DB50D1A26148B00670521 /* AppDelegate.swift */,
 				7C3DB50F1A26148B00670521 /* SearchViewController.swift */,
+				BCCCC4561A4D3FA200356891 /* Search.swift */,
 				7C5F1F721A2AF25400731DD9 /* LoadingCell.xib */,
 				7C9E5AC11A29C3EF008563E9 /* NothingFoundCell.xib */,
 				7C3DB5111A26148B00670521 /* Main.storyboard */,
@@ -250,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCCCC4571A4D3FA200356891 /* Search.swift in Sources */,
 				7C3DB5101A26148B00670521 /* SearchViewController.swift in Sources */,
 				7C60D14D1A334F14006EBBE5 /* DimmingPresentationController.swift in Sources */,
 				7C7736751A491857008AFA0E /* FadeOutAnimationController.swift in Sources */,

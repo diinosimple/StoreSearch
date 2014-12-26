@@ -13,7 +13,8 @@ class LandscapeViewController: UIViewController {
     @IBOutlet weak var scrollView:  UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    var searchResults = [SearchResult]()
+    var search: Search!
+    
     //You are declaring this instance variable as private. firstTime is an internal piece of state that only LandscapeViewController cares about. It should not be visible to other objects.
     private var firstTime = true;
     
@@ -61,7 +62,7 @@ class LandscapeViewController: UIViewController {
         
         if firstTime {
             firstTime = false
-            tileButtons(searchResults)
+            tileButtons(search.searchResults)
         }
         
     }
