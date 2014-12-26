@@ -290,6 +290,8 @@ class SearchViewController: UIViewController {
         landscapeViewController = storyboard!.instantiateViewControllerWithIdentifier("LandscapeViewController") as? LandscapeViewController
         
         if let controller = landscapeViewController {
+            controller.searchResults = searchResults
+            
             //Set the size and position of the new view controller. This makes the landscape view just as big as the SearchViewController, covering the entire screen.
             //The frame is the rectangle that describes the view’s position and size in terms of its superview. To move a view to its final position and size you usually set its frame. The bounds is also a rectangle but seen from the inside of the view.
             //Because SearchViewController’s view is the superview here, the frame of the landscape view must be made equal to the SearchViewController’s bounds.
