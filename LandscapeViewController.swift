@@ -16,6 +16,8 @@ class LandscapeViewController: UIViewController {
     var searchResults = [SearchResult]()
     //You are declaring this instance variable as private. firstTime is an internal piece of state that only LandscapeViewController cares about. It should not be visible to other objects.
     private var firstTime = true;
+    
+    private var downloadTasks = [NSURLSessionDownloadTask]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,9 +116,10 @@ class LandscapeViewController: UIViewController {
         for (index, searchResult) in enumerate(searchResults) {
             
             //Create the UIButton object. For debugging purposes you give each button a title with the array index. If there are 200 results in the search, you also should end up with 200 buttons. Setting the index on the button will help to verify this.
-            let button = UIButton.buttonWithType(.System) as UIButton
-            button.backgroundColor = UIColor.whiteColor()
-            button.setTitle("\(index)", forState: .Normal)
+            let button = UIButton.buttonWithType(.Custom) as UIButton
+            button.setBackgroundImage(UIImage(named: "LandscapeButton"), forState: .Normal)
+            downloadImageForSearchResult(searchResult, andPlaceOnButton: button)
+            
             //When you make a button by hand you always have to set its frame. Using the measurements you figured out earlier, you determine the position and size of the button. Notice that CGRect’s fields all have the CGFloat type but row is an Int. You need to convert row to a CGFloat before you can use it in the calculation.
             button.frame = CGRect(
                 x: x + paddingHorz,
@@ -167,6 +170,10 @@ class LandscapeViewController: UIViewController {
     
     deinit {
         println("deinit \(self)")
+        
+        for task in downloadTasks {
+            task.cancel()
+        }
     }
 
     //You also need to know when the user taps on the Page Control so you can update the scroll view. There is no delegate for this but you can use a regular @IBAction method.
@@ -176,6 +183,32 @@ class LandscapeViewController: UIViewController {
                 self.scrollView.contentOffset = CGPoint(x: self.scrollView.bounds.size.width * CGFloat(sender.currentPage), y:0)
             }, completion: nil)
     }
+    
+    private func downloadImageForSearchResult(searchResult: SearchResult,
+                                                    andPlaceOnButton button: UIButton) {
+            //First you get an NSURL object with the URL to the 60×60-pixel artwork, and then create a download task. Inside the completion handler you put the downloaded file into a UIImage, and if all that succeeds, use dispatch_async() to place the image on the button.
+            if let url = NSURL(string: searchResult.artworkURL60) {
+                let session = NSURLSession.sharedSession()
+                let downloadTask = session.downloadTaskWithURL(url,
+                        completionHandler: { [weak button] url, response, error in
+                            if error == nil && url != nil {
+                                if let data = NSData(contentsOfURL: url) {
+                                    if let image = UIImage(data: data) {
+                                            dispatch_async(dispatch_get_main_queue()) {
+                                                if let button = button {
+                                                        button.setImage(image, forState: .Normal)
+                                                }
+                                            }
+                                    }
+                                }
+                            }
+                        }
+                )
+                downloadTask.resume()
+                downloadTasks.append(downloadTask)
+            }
+    }
+    
 }
 
 extension LandscapeViewController: UIScrollViewDelegate {
