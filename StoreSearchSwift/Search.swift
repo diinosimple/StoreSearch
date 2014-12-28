@@ -15,21 +15,40 @@ typealias SearchComplete = (Bool) -> Void
 
 class Search {
 
-    var searchResults = [SearchResult]()
-    var hasSearched = false
-    var isLoading = false
+    enum State {
+        case NotSearchedYet
+        case Loading
+        case NoResults
+        case Results([SearchResult])
+    }
+    
+    private(set) var state: State = .NotSearchedYet
     private var dataTask: NSURLSessionDataTask? = nil
     
-    func performSearchForText(text: String, category: Int, completion: SearchComplete) {
+    enum Category: Int {
+        case All = 0
+        case Music = 1
+        case Software = 2
+        case EBook = 3
+        
+        var entityName: String {
+            switch self {
+                case .All: return ""
+                case .Music: return "musicTrack"
+                case .Software: return "software"
+                case .EBook: return "ebook"
+            }
+        }
+    }
+    
+    func performSearchForText(text: String, category: Category, completion: SearchComplete) {
         
         if !text.isEmpty {
             
             dataTask?.cancel()
             
             //Before you do the networking request, you set isLoading to true and reload the table to show the activity indicator.
-            isLoading = true
-            hasSearched = true
-            searchResults = [SearchResult]()
+            state = .Loading
             
             //Create the NSURL object with the search text like before.
             let url = self.urlWithSearchText(text, category: category)
@@ -44,6 +63,7 @@ class Search {
                 //If there was a problem, error contains an NSError object describing what went wrong. This happens when the server cannot be reached or the network is down or some other hardware failure.
                 //If error is nil, the communication with the server succeeded; response holds the server’s response code and headers, and data contains the actual thing that was sent back from the server, in this case a blob of JSON.
                 
+                self.state = .NotSearchedYet
                 var success = false
                 
                 if let error = error {
@@ -52,18 +72,16 @@ class Search {
                 } else if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if let dictionary = self.parseJSON(data) {
-                            self.searchResults = self.parseDictionary(dictionary)
-                            self.searchResults.sort(<)
-                            println("Success !")
-                            self.isLoading = false
+                            var searchResults = self.parseDictionary(dictionary)
+                            if searchResults.isEmpty {
+                                self.state = .NoResults
+                            } else {
+                                searchResults.sort(<)
+                                self.state = .Results(searchResults)
+                            }
                             success = true
                         }
                     }
-                }
-                
-                if !success {
-                    self.hasSearched = false
-                    self.isLoading = false
                 }
                 
                 dispatch_async(dispatch_get_main_queue()){
@@ -77,15 +95,8 @@ class Search {
 
     }
 
-    private func urlWithSearchText(searchText: String, category: Int) -> NSURL {
-        var entityName: String
-        switch category {
-        case 1: entityName = "musicTrack"
-        case 2: entityName = "software"
-        case 3: entityName = "ebook"
-        default: entityName = ""
-        }
-        
+    private func urlWithSearchText(searchText: String, category: Category) -> NSURL {
+        let entityName = category.entityName
         let escapedSearchText =
         searchText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
