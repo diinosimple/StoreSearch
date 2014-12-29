@@ -10,6 +10,8 @@
 	<string>StoreSearchSwift</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>468945D62763FB743F2FEF0DE0C5D9B2A8863091</key>
+		<string>https://github.com/diinosimple/github.git</string>
 		<key>E73354650B0F6C8844D50DD1DCE8C6E998D4B64E</key>
 		<string>https://github.com/diinosimple/StoreSearch.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>StoreSearchSwift.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>468945D62763FB743F2FEF0DE0C5D9B2A8863091</key>
+		<string>../../..</string>
 		<key>E73354650B0F6C8844D50DD1DCE8C6E998D4B64E</key>
 		<string>../..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>E73354650B0F6C8844D50DD1DCE8C6E998D4B64E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>468945D62763FB743F2FEF0DE0C5D9B2A8863091</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
