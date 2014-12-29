@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Iino Daisuke. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 //The typealias statement allows you to create a more convenient name for a data type, in order to save some keystrokes and to make the code more readable.
@@ -47,6 +48,8 @@ class Search {
             
             dataTask?.cancel()
             
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            
             //Before you do the networking request, you set isLoading to true and reload the table to show the activity indicator.
             state = .Loading
             
@@ -85,6 +88,7 @@ class Search {
                 }
                 
                 dispatch_async(dispatch_get_main_queue()){
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     completion(success)
                 }
             })

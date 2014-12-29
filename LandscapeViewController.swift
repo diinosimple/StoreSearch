@@ -66,8 +66,11 @@ class LandscapeViewController: UIViewController {
             case .NotSearchedYet:
                 break
             case .Loading:
+                //println("loading")
+                showSpinner()
                 break
             case .NoResults:
+                showNothingFoundLabel()
                 break
             case .Results(let list):
                 tileButtons(list)
@@ -76,6 +79,56 @@ class LandscapeViewController: UIViewController {
         
     }
     
+    //This programmatically creates a new UIActivityIndicatorView object (a big white one this time), puts it in the center of the screen, and starts animating it.
+    //You give the spinner the tag 1000, so you can easily remove it from the screen once the search is done.
+    private func showSpinner() {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        spinner.center = CGPoint(x: CGRectGetMidX(scrollView.bounds) + 0.5,y: CGRectGetMidY(scrollView.bounds) + 0.5)
+        spinner.tag = 1000
+        view.addSubview(spinner)
+        spinner.startAnimating()
+    }
+    
+    func searchResultsReceived() {
+        hideSpinner()
+        
+        switch search.state {
+        case .NotSearchedYet, .Loading:
+            break
+        case .NoResults:
+            showNothingFoundLabel()
+        case .Results(let list):
+            tileButtons(list)
+        }
+    }
+    
+    //The private hideSpinner() method looks for the view with tag 1000 – the activity spinner – and then tells that view to remove itself from the screen.
+    private func hideSpinner() {
+        view.viewWithTag(1000)?.removeFromSuperview()
+    }
+    
+    
+    private func showNothingFoundLabel() {
+        //Here you first create a UILabel object and give it text and color. To make the label see-through the backgroundColor property is set to UIColor.clearColor().
+        let label = UILabel(frame: CGRect.zeroRect)
+        label.text = "Nothing found"
+        label.backgroundColor = UIColor.clearColor()
+        label.textColor = UIColor.whiteColor()
+        
+        //The call to sizeToFit() tells the label to resize itself to the optimal size. You could have given the label a frame that was big enough to begin with, but I find this just as easy. (It also helps when you’re translating the app to a different language, in which case you may not know beforehand how large the label needs to be.)
+        label.sizeToFit()
+        
+        //The only trouble is that you want to center the label in the view and as you saw before that gets tricky when the width or height are odd (something you don’t necessarily know in advance). So here you use a little trick to always force the dimensions of the label to be even numbers:
+        //width = ceil(width/2) * 2
+        //If you divide a number such as 11 by 2 you get 5.5. The ceil() function rounds up 5.5 to make 6, and then you multiply by 2 to get a final value of 12. This formula always gives you the next even number if the original is odd. (You only need to do this because these values have type CGFloat. If they were integers, you wouldn’t have to worry about fractional parts.)
+        var rect = label.frame
+        rect.size.width = ceil(rect.size.width/2) * 2
+        rect.size.height = ceil(rect.size.height/2) * 2
+        label.frame = rect
+        
+        label.center = CGPoint(x: CGRectGetMidX(scrollView.bounds), y: CGRectGetMidY(scrollView.bounds))
+        view.addSubview(label)
+    }
     private func tileButtons(searchResults: [SearchResult]) {
         //First, the method must decide on how big the grid squares will be and how many squares you need to fill up each page. There are four cases to consider, based on the width of the screen:
         //480 points, 3.5-inch device (iPhone 4S). A single page fits 3 rows (rowsPerPage) of 5 columns (columnsPerPage). Each grid square is 96 by 88 points (itemWidth and itemHeight). The first row starts at Y = 20 (marginY).
@@ -130,6 +183,10 @@ class LandscapeViewController: UIViewController {
             button.setBackgroundImage(UIImage(named: "LandscapeButton"), forState: .Normal)
             downloadImageForSearchResult(searchResult, andPlaceOnButton: button)
             
+            //First you give the button a tag, so you know to which index in the .Results array this button corresponds. That’s needed in order to pass the correct SearchResult object to the Detail pop-up.
+            button.tag = 2000 + index
+            button.addTarget(self, action: Selector("buttonPressed:"), forControlEvents: .TouchUpInside)
+            
             //When you make a button by hand you always have to set its frame. Using the measurements you figured out earlier, you determine the position and size of the button. Notice that CGRect’s fields all have the CGFloat type but row is an Int. You need to convert row to a CGFloat before you can use it in the calculation.
             button.frame = CGRect(
                 x: x + paddingHorz,
@@ -165,7 +222,7 @@ class LandscapeViewController: UIViewController {
             width: CGFloat(numPages)*scrollViewWidth,
             height: scrollView.bounds.size.height)
         
-        println("Number of pages: \(numPages)")
+        //println("Number of pages: \(numPages)")
         
         //This sets the number of dots that the page control displays to the number of pages that you calculated.
         pageControl.numberOfPages = numPages
@@ -173,13 +230,30 @@ class LandscapeViewController: UIViewController {
         
         
     }
+    
+    func buttonPressed(sender: UIButton) {
+        performSegueWithIdentifier("ShowDetail", sender: sender)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDetail" {
+            switch search.state {
+            case .Results(let list):
+                let detailViewController = segue.destinationViewController as DetailViewController
+                let searchResult = list[sender!.tag - 2000]
+                detailViewController.searchResult = searchResult
+            default:
+                break
+            }
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     deinit {
-        println("deinit \(self)")
+        //println("deinit \(self)")
         
         for task in downloadTasks {
             task.cancel()

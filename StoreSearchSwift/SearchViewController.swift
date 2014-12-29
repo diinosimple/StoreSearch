@@ -162,6 +162,10 @@ class SearchViewController: UIViewController {
                 controller.view.removeFromSuperview()
                 controller.removeFromParentViewController()
                 self.landscapeViewController = nil
+                
+                if self.presentationController != nil {
+                    self.dismissViewControllerAnimated(true , completion: nil)
+                }
             })
         }
     }
@@ -184,6 +188,15 @@ extension SearchViewController: UISearchBarDelegate {
                         self.showNetworkError()
                     }
                     self.tableView.reloadData()
+                    
+                    //When the search begins there is no LandscapeViewController object yet because the only way to start a search is from portrait mode.
+                    //But by the time the closure is invoked, the device may have rotated and if that happened self.landscapeViewController will contain a valid reference.
+                    //Upon rotation you also gave the new LandscapeViewController a reference to the active Search object. Now you just have to tell it that search results are available so it can create the buttons and fill them up with images.
+                    //Of course, if you’re still in portrait mode by the time the search completes then self.landscapeViewController is nil and the call to searchResultsReceived() will simply be ignored.
+                    if let controller = self.landscapeViewController {
+                        //println("Need to populate search results into landscapeViewController")
+                        controller.searchResultsReceived()
+                    }
             })
         }
         
