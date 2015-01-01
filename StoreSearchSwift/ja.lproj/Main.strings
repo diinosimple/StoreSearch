@@ -1,0 +1,36 @@
+
+/* Class = "IBUILabel"; text = "Kind Value"; ObjectID = "Aa4-dx-LWI"; */
+"Aa4-dx-LWI.text" = "Kind Value";
+
+/* Class = "IBUIButton"; normalTitle = "$9.99"; ObjectID = "Awq-2d-epm"; */
+"Awq-2d-epm.normalTitle" = "$9.99";
+
+/* Class = "IBUISegmentedControl"; GUZ-IH-MYb.segmentTitles[0] = "All"; ObjectID = "GUZ-IH-MYb"; */
+"GUZ-IH-MYb.segmentTitles[0]" = "全て";
+
+/* Class = "IBUISegmentedControl"; GUZ-IH-MYb.segmentTitles[1] = "Music"; ObjectID = "GUZ-IH-MYb"; */
+"GUZ-IH-MYb.segmentTitles[1]" = "音楽";
+
+/* Class = "IBUISegmentedControl"; GUZ-IH-MYb.segmentTitles[2] = "Software"; ObjectID = "GUZ-IH-MYb"; */
+"GUZ-IH-MYb.segmentTitles[2]" = "ソフトウエア";
+
+/* Class = "IBUISegmentedControl"; GUZ-IH-MYb.segmentTitles[3] = "E-books"; ObjectID = "GUZ-IH-MYb"; */
+"GUZ-IH-MYb.segmentTitles[3]" = "電子書籍";
+
+/* Class = "IBUILabel"; text = "Type"; ObjectID = "RFi-aB-ayF"; */
+"RFi-aB-ayF.text" = "Type";
+
+/* Class = "IBUILabel"; text = "Genre Value"; ObjectID = "SyS-7I-XfI"; */
+"SyS-7I-XfI.text" = "Genre Value";
+
+/* Class = "IBUILabel"; text = "Artist Name"; ObjectID = "VTz-VB-K7z"; */
+"VTz-VB-K7z.text" = "Artist Name";
+
+/* Class = "IBUILabel"; text = "Genre"; ObjectID = "hiY-a8-eR7"; */
+"hiY-a8-eR7.text" = "Genre";
+
+/* Class = "IBUISearchBar"; placeholder = "App name, artist, song, album, e-book"; ObjectID = "lge-QY-wtY"; */
+"lge-QY-wtY.placeholder" = "アプリ, アーティスト, ソング, アルバム, 電子書籍";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "qGM-T6-Wpx"; */
+"qGM-T6-Wpx.text" = "名前";

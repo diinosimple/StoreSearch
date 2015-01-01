@@ -111,7 +111,7 @@ class LandscapeViewController: UIViewController {
     private func showNothingFoundLabel() {
         //Here you first create a UILabel object and give it text and color. To make the label see-through the backgroundColor property is set to UIColor.clearColor().
         let label = UILabel(frame: CGRect.zeroRect)
-        label.text = "Nothing found"
+        label.text = NSLocalizedString("Nothing found", comment: "label for Nothing found")
         label.backgroundColor = UIColor.clearColor()
         label.textColor = UIColor.whiteColor()
         
