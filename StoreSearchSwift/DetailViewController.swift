@@ -18,7 +18,18 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceButton: UIButton!
     
-    var searchResult: SearchResult!
+    var isPopUp = false
+    
+    //After searchResult has changed, you call the updateUI() method to set the text on the labels.
+    var searchResult: SearchResult! {
+        didSet {
+            if isViewLoaded() {
+                updateUI()
+            }
+        }
+    }
+    
+    
     var downloadTask: NSURLSessionDownloadTask?
     
     enum AnimationStyle {
@@ -37,7 +48,7 @@ class DetailViewController: UIViewController {
     }
     
     deinit {
-        println("deinit \(self)")
+        //println("deinit \(self)")
         downloadTask?.cancel()
     }
     
@@ -49,17 +60,26 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.clearColor()
-        
         popupView.layer.cornerRadius = 10
         view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255,
             alpha: 1)
         
         //This creates the new gesture recognizer that listens to taps anywhere in this view controller and calls the close() method in response.
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("close"))
-        gestureRecognizer.cancelsTouchesInView = false
-        gestureRecognizer.delegate = self
-        view.addGestureRecognizer(gestureRecognizer)
+        
+        if isPopUp {
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("close"))
+            gestureRecognizer.cancelsTouchesInView = false
+            gestureRecognizer.delegate = self
+            view.addGestureRecognizer(gestureRecognizer)
+            view.backgroundColor = UIColor.clearColor()
+        } else {
+            view.backgroundColor = UIColor(patternImage: UIImage(named: "LandscapeBackground")!)
+            popupView.hidden = true
+            if let displayName = NSBundle.mainBundle().localizedInfoDictionary?["CFBundleDisplayName"] as? NSString
+            {
+                title = displayName
+            }
+        }
         
         if searchResult != nil {
             updateUI()
@@ -101,6 +121,8 @@ class DetailViewController: UIViewController {
         if let url = NSURL(string: searchResult.artworkURL100) {
             downloadTask = artworkImageView.loadImageWithURL(url)
         }
+        
+        popupView.hidden = false
     }
     
     
