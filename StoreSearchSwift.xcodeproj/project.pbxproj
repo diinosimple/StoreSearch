@@ -24,6 +24,7 @@
 		7C7736751A491857008AFA0E /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7736741A491857008AFA0E /* FadeOutAnimationController.swift */; };
 		7C9E5ABA1A297BEE008563E9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9E5AB91A297BEE008563E9 /* SearchResult.swift */; };
 		7CC40CA91A58F17F00854447 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CC40CAB1A58F17F00854447 /* InfoPlist.strings */; };
+		7CC40CAE1A59228F00854447 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC40CAD1A59228F00854447 /* MenuViewController.swift */; };
 		7CDB25521A517299002E7A56 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDB25541A517299002E7A56 /* SearchResultCell.xib */; };
 		BC5B8B341A510612007E248F /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5B8B361A510612007E248F /* NothingFoundCell.xib */; };
 		BC5B8B381A510A28007E248F /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5B8B3A1A510A28007E248F /* LoadingCell.xib */; };
@@ -64,6 +65,7 @@
 		7C9E5AB91A297BEE008563E9 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		7CC40CAA1A58F17F00854447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7CC40CAC1A58F18100854447 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7CC40CAD1A59228F00854447 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		7CDB25511A51653F002E7A56 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		7CDB25531A517299002E7A56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchResultCell.xib; sourceTree = "<group>"; };
 		BC5B8B351A510612007E248F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				7CDB25541A517299002E7A56 /* SearchResultCell.xib */,
 				7C3DB50B1A26148B00670521 /* Supporting Files */,
 				7C4CB7721A33F1940090F639 /* BounceAnimationController.swift */,
+				7CC40CAD1A59228F00854447 /* MenuViewController.swift */,
 			);
 			path = StoreSearchSwift;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				7C46455E1A53F6170036C489 /* DetailViewController.swift in Sources */,
 				BCCCC4571A4D3FA200356891 /* Search.swift in Sources */,
 				7C3DB5101A26148B00670521 /* SearchViewController.swift in Sources */,
+				7CC40CAE1A59228F00854447 /* MenuViewController.swift in Sources */,
 				7C46455C1A53F5F60036C489 /* LandscapeViewController.swift in Sources */,
 				7C4645621A53F65D0036C489 /* UIImageView+DownloadImage.swift in Sources */,
 				7C60D14D1A334F14006EBBE5 /* DimmingPresentationController.swift in Sources */,
