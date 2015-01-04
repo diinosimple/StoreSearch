@@ -5,3 +5,5 @@
   Created by Iino Daisuke on 2015/01/04.
   Copyright (c) 2015年 Iino Daisuke. All rights reserved.
 */
+
+CFBundleDisplayName = "StoreSearch";

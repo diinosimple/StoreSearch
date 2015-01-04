@@ -15,6 +15,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     var landscapeViewController: LandscapeViewController?
     
+    weak var splitViewDetail: DetailViewController?
+    
     let search = Search()
     
     struct TableViewCellIdentifiers {
@@ -39,9 +41,12 @@ class SearchViewController: UIViewController {
         
         tableView.rowHeight = 80
         
-        searchBar.becomeFirstResponder()
+        if UIDevice.currentDevice().userInterfaceIdiom != .Pad {
+            searchBar.becomeFirstResponder()
+        }
         
-        
+        title = NSLocalizedString("Search", comment: "Split-view master button")
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,6 +77,8 @@ class SearchViewController: UIViewController {
                 let indexPath = sender as NSIndexPath
                 let searchResult = list[indexPath.row]
                 detailViewController.searchResult = searchResult
+                detailViewController.isPopUp = true
+                
             default:
                 break
             }
@@ -169,6 +176,14 @@ class SearchViewController: UIViewController {
             })
         }
     }
+    
+    func hideMasterPane() {
+        UIView.animateWithDuration(0.25, animations: {
+            self.splitViewController!.preferredDisplayMode = .PrimaryHidden
+        }, completion: { _ in
+            self.splitViewController!.preferredDisplayMode = .Automatic
+        })
+    }
 
 }
 
@@ -252,8 +267,23 @@ extension SearchViewController: UITableViewDataSource {
     
     //The tableView(didSelectRowAtIndexPath) method will simply deselect the row with an animation
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        performSegueWithIdentifier("ShowDetail", sender: indexPath)
+        
+        searchBar.resignFirstResponder()
+        if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .Compact {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegueWithIdentifier("ShowDetail", sender: indexPath)
+        } else {
+            switch search.state {
+            case .Results(let list):
+                splitViewDetail?.searchResult = list[indexPath.row]
+            default:
+                break
+            }
+        
+            if splitViewController!.displayMode != .AllVisible {
+                hideMasterPane()
+            }
+        }
         
     }
     
