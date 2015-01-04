@@ -20,10 +20,10 @@
 		7C4CB7711A33EC720090F639 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CB7701A33EC720090F639 /* GradientView.swift */; };
 		7C4CB7731A33F1940090F639 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CB7721A33F1940090F639 /* BounceAnimationController.swift */; };
 		7C4CB7751A33F9B00090F639 /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4CB7741A33F9B00090F639 /* SlideOutAnimationController.swift */; };
-		7C4FE3CC1A558D6C009BE1E4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C4FE3CE1A558D6C009BE1E4 /* InfoPlist.strings */; };
 		7C60D14D1A334F14006EBBE5 /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C60D14C1A334F14006EBBE5 /* DimmingPresentationController.swift */; };
 		7C7736751A491857008AFA0E /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7736741A491857008AFA0E /* FadeOutAnimationController.swift */; };
 		7C9E5ABA1A297BEE008563E9 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9E5AB91A297BEE008563E9 /* SearchResult.swift */; };
+		7CC40CA91A58F17F00854447 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CC40CAB1A58F17F00854447 /* InfoPlist.strings */; };
 		7CDB25521A517299002E7A56 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDB25541A517299002E7A56 /* SearchResultCell.xib */; };
 		BC5B8B341A510612007E248F /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5B8B361A510612007E248F /* NothingFoundCell.xib */; };
 		BC5B8B381A510A28007E248F /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5B8B3A1A510A28007E248F /* LoadingCell.xib */; };
@@ -59,11 +59,11 @@
 		7C4CB7721A33F1940090F639 /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		7C4CB7741A33F9B00090F639 /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
 		7C4FE3C91A558849009BE1E4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7C4FE3CD1A558D6C009BE1E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		7C4FE3CF1A558D6F009BE1E4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7C60D14C1A334F14006EBBE5 /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		7C7736741A491857008AFA0E /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
 		7C9E5AB91A297BEE008563E9 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		7CC40CAA1A58F17F00854447 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7CC40CAC1A58F18100854447 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7CDB25511A51653F002E7A56 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		7CDB25531A517299002E7A56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SearchResultCell.xib; sourceTree = "<group>"; };
 		BC5B8B351A510612007E248F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NothingFoundCell.xib; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		7C3DB4FF1A26148B00670521 = {
 			isa = PBXGroup;
 			children = (
-				7C4FE3CE1A558D6C009BE1E4 /* InfoPlist.strings */,
+				7CC40CAB1A58F17F00854447 /* InfoPlist.strings */,
 				7C3DB50A1A26148B00670521 /* StoreSearchSwift */,
 				7C3DB5201A26148B00670521 /* StoreSearchSwiftTests */,
 				7C3DB5091A26148B00670521 /* Products */,
@@ -245,7 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C3DB5131A26148B00670521 /* Main.storyboard in Resources */,
-				7C4FE3CC1A558D6C009BE1E4 /* InfoPlist.strings in Resources */,
+				7CC40CA91A58F17F00854447 /* InfoPlist.strings in Resources */,
 				7C4645651A53F7730036C489 /* Localizable.strings in Resources */,
 				BC5B8B381A510A28007E248F /* LoadingCell.xib in Resources */,
 				7CDB25521A517299002E7A56 /* SearchResultCell.xib in Resources */,
@@ -321,11 +321,11 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		7C4FE3CE1A558D6C009BE1E4 /* InfoPlist.strings */ = {
+		7CC40CAB1A58F17F00854447 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7C4FE3CD1A558D6C009BE1E4 /* Base */,
-				7C4FE3CF1A558D6F009BE1E4 /* ja */,
+				7CC40CAA1A58F17F00854447 /* Base */,
+				7CC40CAC1A58F18100854447 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
